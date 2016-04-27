@@ -9,6 +9,10 @@ myApp.config(function($routeProvider){
             templateUrl: 'pages/second.html',
             controller : 'secondController'
         })
+        .when('/search', {
+            templateUrl: 'pages/search.html',
+            controller: 'searchController'
+        })
     ;
 });
 
@@ -49,10 +53,35 @@ myApp.controller('secondController', ['$scope', '$log', '$timeout', '$filter', '
     console.log($scope.num);
 }]);
 
+
+myApp.controller('searchController', ['$scope', '$log', '$timeout', '$filter', '$routeParams', function($scope, $log, $timeout, $filter, $routeParams){
+
+    $scope.person = {
+        name: 'John Doe',
+        address: '55 Main St, New York, NY 11111'
+    };
+    console.log('here');
+}]);
+
+
+
 myApp.service('nameService', function(){
     var self = this;
     this.name = 'John Doe';
     this.nameLength = function(){
         return self.name.length;
+    }
+});
+
+
+myApp.directive('searchResult', function(){
+    return {
+        restrict: 'AECM',
+        templateUrl: 'directives/searchResult.html',
+        replace: true,
+        scope: {
+            personName : "@",
+            personAddress: "@"
+        }
     }
 });
