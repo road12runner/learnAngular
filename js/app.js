@@ -56,9 +56,43 @@ myApp.controller('secondController', ['$scope', '$log', '$timeout', '$filter', '
 
 myApp.controller('searchController', ['$scope', '$log', '$timeout', '$filter', '$routeParams', function($scope, $log, $timeout, $filter, $routeParams){
 
+    //$scope.person = {
+    //    name: 'John Doe',
+    //    address: '55 Main St, New York, NY 11111'
+    //};
+
     $scope.person = {
         name: 'John Doe',
-        address: '55 Main St, New York, NY 11111'
+        address: '55 Main St',
+        city: 'New York',
+        state: 'NY',
+        zip:'11111'
+    };
+
+
+    $scope.people = [{
+        name: 'John Doe',
+        address: '55 Main St',
+        city: 'New York',
+        state: 'NY',
+        zip:'11111'
+    }, {
+        name: 'Jane Doe',
+        address: '33 Second St',
+        city: 'New York',
+        state: 'NY',
+        zip:'112211'
+    }, {
+        name: 'George Doe',
+        address: '111 Main St',
+        city: 'Miamia',
+        state: 'FL',
+        zip:'55555'
+    }];
+
+
+    $scope.formattedAddress= function(person){
+        return person.address + ', ' + person.city  + ', ' + person.state  + ', ' + person.zip;
     };
     console.log('here');
 }]);
@@ -80,8 +114,25 @@ myApp.directive('searchResult', function(){
         templateUrl: 'directives/searchResult.html',
         replace: true,
         scope: {
-            personName : "@",
-            personAddress: "@"
+            //personName : "@",
+            //personAddress: "@"
+            personObject: "=",
+            formattedAddressFunction: "&"
+        },
+        compile: function(elem, attrs){
+            console.log('Compiling...');
+            console.log(elem);
+
+            return {
+                pre: function(scope, elements, attrs) {
+                    console.log('pre-linking');
+                    console.log(elements);
+                },
+                post : function(scope, elements, attrs) {
+                    console.log('post-linking');
+                    console.log(elements);
+                }
+            }
         }
     }
 });
