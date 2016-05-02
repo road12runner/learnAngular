@@ -113,26 +113,42 @@ myApp.directive('searchResult', function(){
         restrict: 'AECM',
         templateUrl: 'directives/searchResult.html',
         replace: true,
+        transclude: true,
         scope: {
             //personName : "@",
             //personAddress: "@"
             personObject: "=",
             formattedAddressFunction: "&"
         },
-        compile: function(elem, attrs){
-            console.log('Compiling...');
-            console.log(elem);
+        //compile: function(elem, attrs){
+        //    console.log('Compiling...');
+        //    console.log(elem);
+        //
+        //    return {
+        //        pre: function(scope, elements, attrs) {
+        //            console.log('pre-linking');
+        //            console.log(elements);
+        //        },
+        //        post : function(scope, elements, attrs) {
+        //            console.log('post-linking');
+        //            console.log(scope);
+        //
+        //            if (scope.personObject.name === 'Jane Doe'){
+        //                elements.removeAttr('class');
+        //            }
+        //            console.log(elements);
+        //        }
+        //    }
+        //}
+        //link : function(scope, elements, attrs) {
+        //    console.log('post-linking');
+        //    console.log(scope);
+        //
+        //    if (scope.personObject.name === 'Jane Doe'){
+        //        elements.removeAttr('class');
+        //    }
+        //    console.log(elements);
+        //}
 
-            return {
-                pre: function(scope, elements, attrs) {
-                    console.log('pre-linking');
-                    console.log(elements);
-                },
-                post : function(scope, elements, attrs) {
-                    console.log('post-linking');
-                    console.log(elements);
-                }
-            }
-        }
     }
 });
